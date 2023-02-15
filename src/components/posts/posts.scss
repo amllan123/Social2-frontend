@@ -1,0 +1,11 @@
+.progress{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.posts{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
