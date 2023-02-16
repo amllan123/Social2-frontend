@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/authContext";
 import {toast} from 'react-hot-toast'
 import {io} from 'socket.io-client'
 import Onlineuser from "../onlineuser/Onlineuser";
+import Avtar from '../../assets/avtar.jpg'
 
 
 
@@ -18,15 +19,17 @@ const {currentUser}=useContext(AuthContext)
 const [onlineusers, setonlineusers]=useState([])
 
 
+
+
 useEffect( ()=>{
   const getUnfolloweUser= async()=>{
-    try {
-     const res=await axios.get(`${url}/api/user/`+ currentUser._id+`/unfollowedUser`)
-     setUnfollowUsers(res.data)
-    } catch (error) {
-      console.log(error);
-    }
+  try {
+   const res=await axios.get(`${url}/api/user/`+ currentUser._id+`/unfollowedUser`)
+   setUnfollowUsers(res.data)
+  } catch (error) {
+    console.log(error);
   }
+}
   getUnfolloweUser()
 },[])
 
@@ -36,9 +39,13 @@ const handleFollow =async (id)=>{
     const res =  await axios.put(`${url}/api/user/`+id+`/follow`,{
       userId:currentUser._id
     })
+    
     const data= currentUser
     data.following.push(id);
    localStorage.setItem('user',JSON.stringify(data))
+   setUnfollowUsers(unFollowUsers.filter((e)=> e._id !== id))
+   
+   
   } catch (error) { 
     console.log(error);
   }
@@ -89,7 +96,7 @@ useEffect(()=>{
         <div className="user" key={c._id}>
             <div className="userInfo">
               <img
-                src={c.profilePicture}
+                src={c.profilePicture || Avtar}
                 alt=""
               />
               <span>{c.username}</span>

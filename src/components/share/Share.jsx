@@ -6,6 +6,8 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { toast } from 'react-hot-toast'
 import axios from "axios";
+import Avtar from '../../assets/avtar.jpg'
+
 
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -90,7 +92,7 @@ const handleShare=async(e)=>{
       <div className="container">
         <div className="top">
           <img
-            src={currentUser.profilePicture}
+            src={currentUser.profilePicture || Avtar}
             alt=""
           />
           <input type="text" placeholder={`What's on your mind ${currentUser.username}?`}

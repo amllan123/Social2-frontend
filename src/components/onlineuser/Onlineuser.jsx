@@ -19,7 +19,7 @@ const Onlineuser = ({userId}) => {
 
 
   return (
-    <div className="user" onClick={()=>navigate(`/profile/`+user._id)} style={{cursor:"pointer"}}>
+    <div className="user" onClick={()=>navigate(`/profile/`+user?._id)} style={{cursor:"pointer"}}>
     <div className="userInfo">
       <img
         src={user?.profilePicture || Avtar}

@@ -5,9 +5,13 @@ export const AuthContextProvider = ({children}) =>{
         JSON.parse(localStorage.getItem("user")) || null
     );
 
-    const login =({data})=>{
+    
+    const login =async({data})=>{
 
         setCurrentUser(data);
+       
+       
+    
 
     }
 useEffect(()=>{

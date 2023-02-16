@@ -1,5 +1,5 @@
 import { useContext, useState  } from "react";
-import { Link,Navigate,useNavigate } from "react-router-dom";
+import { Link,Navigate} from "react-router-dom";
 import { AuthContext } from "../../context/authContext";
 import "./login.scss";
 import axios  from 'axios'
@@ -10,16 +10,17 @@ const Login = () => {
   const[email,setEmail]=useState("")
   const[password,setPassword]=useState("")
   const {login} =useContext(AuthContext)
-const navigate=useNavigate()
 
+
+const {currentUser}= useContext(AuthContext)
 
  const handleLogin= async(e)=>{
   e.preventDefault()
   try {
      const res=await axios.post(`${url}/api/auth/login`,{email,password})
-     navigate('/')
-     login({data:res.data})
+     await login({data:res.data})
      toast.success("Login Successfully")
+     
     
   } catch (error) {
     
@@ -54,6 +55,7 @@ const navigate=useNavigate()
             <input type="email" placeholder="E-mail" onChange={(e)=>setEmail(e.target.value)} />
             <input type="password" placeholder="Password" onChange={(e)=>setPassword(e.target.value)} />
             <button onClick={handleLogin} >Login</button>
+            {currentUser && <Navigate to={"/"}/>}
           </form>
         </div>
       </div>
