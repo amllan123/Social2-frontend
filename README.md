@@ -1,3 +1,7 @@
+link : https://social2-frontend.vercel.app/
+for Demonstartion use email: amllan@gmail.com  password : 12345 
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
